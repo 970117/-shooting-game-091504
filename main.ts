@@ -14,14 +14,9 @@ input.onButtonPressed(Button.B, function () {
 })
 let 子彈: game.LedSprite = null
 let 主角: game.LedSprite = null
+let 飛機 = game.createSprite(0, 0)
 game.setScore(0)
 主角 = game.createSprite(2, 4)
-let 飛機 = game.createSprite(0, 0)
-basic.forever(function () {
-    if (主角.isTouching(飛機)) {
-        game.gameOver()
-    }
-})
 basic.forever(function () {
     basic.pause(500)
     飛機.change(LedSpriteProperty.X, 1)
@@ -38,5 +33,10 @@ basic.forever(function () {
             飛機.set(LedSpriteProperty.X, 0)
             飛機.set(LedSpriteProperty.Y, 0)
         }
+    }
+})
+basic.forever(function () {
+    if (主角.isTouching(飛機)) {
+        game.gameOver()
     }
 })
