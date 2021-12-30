@@ -1,6 +1,8 @@
+// 往左移
 input.onButtonPressed(Button.A, function () {
     主角.change(LedSpriteProperty.X, -1)
 })
+// 發射子彈
 input.onButtonPressed(Button.AB, function () {
     子彈 = game.createSprite(主角.get(LedSpriteProperty.X), 主角.get(LedSpriteProperty.Y))
     for (let index = 0; index < 4; index++) {
@@ -9,14 +11,17 @@ input.onButtonPressed(Button.AB, function () {
     }
     子彈.delete()
 })
+// 往右移
 input.onButtonPressed(Button.B, function () {
     主角.change(LedSpriteProperty.X, 1)
 })
+// 創建角色
 let 子彈: game.LedSprite = null
 let 主角: game.LedSprite = null
 let 飛機 = game.createSprite(0, 0)
 game.setScore(0)
 主角 = game.createSprite(2, 4)
+// 飛機到底換下行
 basic.forever(function () {
     basic.pause(500)
     飛機.change(LedSpriteProperty.X, 1)
@@ -26,6 +31,7 @@ basic.forever(function () {
         飛機.change(LedSpriteProperty.Y, 1)
     }
 })
+// 子彈打到飛機就得分
 basic.forever(function () {
     if (子彈) {
         if (子彈.isTouching(飛機)) {
@@ -35,6 +41,7 @@ basic.forever(function () {
         }
     }
 })
+// 飛機打到主角的話就遊戲結束
 basic.forever(function () {
     if (主角.isTouching(飛機)) {
         game.gameOver()
